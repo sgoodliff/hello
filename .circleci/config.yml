@@ -22,9 +22,11 @@ jobs:
     working_directory: /go/src/github.com/sgoodliff/hello
     steps:
       - checkout
-      - codecov/upload:
-          file:
+     
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run: go test -race -coverprofile=coverage.txt -covermode=atomic -v ./...
+
+      - codecov/upload:
+        file:
