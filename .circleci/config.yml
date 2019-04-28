@@ -25,11 +25,11 @@ jobs:
    #   CODECOV_TOKEN="6bc48cc7-5936-4ecf-abfc-67471579fe58"
     steps:
       - checkout
-     
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
       - run: go test -race -coverprofile=coverage.txt -covermode=atomic -v ./...
 
       - codecov/upload:
-        file: coverage.txt
+         file: coverage.txt
+         token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
