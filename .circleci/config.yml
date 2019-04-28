@@ -21,8 +21,8 @@ jobs:
     ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/sgoodliff/hello
 
-    environment: # environment variables for the build itself
-      CODECOV_TOKEN="6bc48cc7-5936-4ecf-abfc-67471579fe58"
+  #  environment: # environment variables for the build itself
+   #   CODECOV_TOKEN="6bc48cc7-5936-4ecf-abfc-67471579fe58"
     steps:
       - checkout
      
