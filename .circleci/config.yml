@@ -28,9 +28,14 @@ jobs:
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run: go test -race -coverprofile=tests/coverage.txt -covermode=atomic -v ./...
-      - store_test_results:
-        path: test/
+      - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
+
+      - store_artifacts: # upload test summary for display in Artifacts
+          path: /tmp/test-results
+          destination: raw-test-output
+
+      - store_test_results: # upload test results for display in Test Summary
+          path: /tmp/test-results
       - codecov/upload:
          file: test/coverage.txt
          token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
