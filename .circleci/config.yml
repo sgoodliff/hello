@@ -29,7 +29,7 @@ jobs:
       - run: go get -v -t -d ./...
       - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
       - codecov/upload:
-         file: test/coverage.txt
+         file: /tmp/test-results/coverage.txt
          token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
       - store_artifacts: # upload test summary for display in Artifacts
           path: /tmp/test-results
