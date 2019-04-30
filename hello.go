@@ -5,10 +5,10 @@ package main
 func Hello() string {
 	return "Hello Go!"
 }
-func GoodBye() string {
-	return "GoodBye!"
+func Goodbye() string {
+	return "Goodbye!"
 }
 func main() {
 	Hello()
-	GoodBye()
+	Goodbye()
 }
