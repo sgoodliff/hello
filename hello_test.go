@@ -10,3 +10,11 @@ func TestHello(t *testing.T) {
 		t.Error("Test failed")
 	}
 }
+// check that GoodBye() returns expected
+func TestGoodBye(t *testing.T) {
+	expected := "GoodBye!"
+	actual := Hello()
+	if actual != expected {
+		t.Error("Test failed")
+	}
+}
