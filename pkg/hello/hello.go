@@ -1,14 +1,12 @@
 // Package hello provides very basic funcions
-package main
+package hello
 
-// returns a string
+//Hello eturns a string
 func Hello() string {
 	return "Hello Go!"
 }
+
+//Goodbye returns a string
 func Goodbye() string {
 	return "Goodbye!"
-}
-func main() {
-	Hello()
-	Goodbye()
 }
