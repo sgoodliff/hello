@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/sgoodliff/pkg/hello"
+	"github.com/sgoodliff/hello/pkg/hello"
 )
 
 func main() {
