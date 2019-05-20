@@ -2,3 +2,4 @@ hello.exe
 hello
 .vscode/*
 vendor/*
+/cmd/cmd.exe
