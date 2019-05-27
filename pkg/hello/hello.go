@@ -12,13 +12,18 @@ func Whatsup() string {
 	return "Hello Go!"
 }
 
-/*
-//Bye returns a string
+// Going returns a string
+func Going() string {
+	text := "Going!"
+	return text
+}
+
+// Bye returns a string
 func Bye() string {
 	text := "bye bye"
 	return text
 }
-*/
+
 //Goodbye returns a string
 func Goodbye() string {
 	return "Goodbye!"

@@ -7,9 +7,8 @@ import (
 
 func main() {
 	log.SetLevel(log.DebugLevel)
-
+	goodbye := hello.Going()
 	hello := hello.Whatsup()
-	goodbye := hello.Bye()
 
 	log.WithFields(log.Fields{
 		"Hello":   hello,
