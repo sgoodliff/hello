@@ -9,10 +9,10 @@ func main() {
 	log.SetLevel(log.DebugLevel)
 
 	hello := hello.Hello()
-	goodbye := hello.Bye()
+	//goodbye := hello.Bye()
 
 	log.WithFields(log.Fields{
 		"Hello":   hello,
-		"Goodbye": goodbye,
+		"Goodbye": "goodbye",
 	}).Debug("A walrus appears")
 }
