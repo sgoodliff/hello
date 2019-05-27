@@ -1,12 +1,11 @@
 // Package hello provides very basic funcions
 package hello
 
-/*
 //Hello eturns a string
 func Hello() string {
 	return "Hello Go!"
 }
-*/
+
 // WhatsUp returns a string
 func Whatsup() string {
 	return "Hello Go!"
