@@ -29,7 +29,7 @@ func TestGoing(t *testing.T) {
 
 func TestWhatsup(t *testing.T) {
 	expected := "Whatsup!"
-	actual := Going()
+	actual := Whatsup()
 	if actual != expected {
 		t.Error("Test failed")
 	}
