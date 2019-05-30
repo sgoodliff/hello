@@ -8,7 +8,7 @@ func Hello() string {
 
 // WhatsUp returns a string
 func Whatsup() string {
-	return "Hello Go!"
+	return "Whatsup!"
 }
 
 // Going returns a string

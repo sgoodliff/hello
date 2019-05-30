@@ -26,3 +26,20 @@ func TestGoing(t *testing.T) {
 		t.Error("Test failed")
 	}
 }
+
+func TestWhatsup(t *testing.T) {
+	expected := "Whatsup!"
+	actual := Going()
+	if actual != expected {
+		t.Error("Test failed")
+	}
+}
+
+// check that Goodbye() returns expected
+func TestBye(t *testing.T) {
+	expected := "bye bye"
+	actual := Goodbye()
+	if actual != expected {
+		t.Error("Test failed")
+	}
+}
