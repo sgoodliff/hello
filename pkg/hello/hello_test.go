@@ -38,7 +38,7 @@ func TestWhatsup(t *testing.T) {
 // check that Goodbye() returns expected
 func TestBye(t *testing.T) {
 	expected := "bye bye"
-	actual := Goodbye()
+	actual := Bye()
 	if actual != expected {
 		t.Error("Test failed")
 	}
