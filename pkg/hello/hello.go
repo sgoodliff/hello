@@ -13,8 +13,8 @@ func Whatsup() string {
 
 // Going returns a string
 func Going() string {
-	text := "Going!"
-	return text
+
+	return "Going!"
 }
 
 // Bye returns a string

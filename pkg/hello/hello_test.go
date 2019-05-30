@@ -21,7 +21,7 @@ func TestGoodbye(t *testing.T) {
 }
 func TestGoing(t *testing.T) {
 	expected := "Going!"
-	actual := Goodbye()
+	actual := Going()
 	if actual != expected {
 		t.Error("Test failed")
 	}
