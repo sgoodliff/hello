@@ -1,3 +1,7 @@
 .vscode/*
 vendor/*
+<<<<<<< HEAD
 WebServer-ae57bd317ec3.json
+=======
+/cmd/cmd.exe
+>>>>>>> 65bb4d0fb5acba3bd4a8017811ff4fedbdd068da
