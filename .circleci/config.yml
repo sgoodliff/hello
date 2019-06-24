@@ -10,31 +10,32 @@ jobs:
       # specify the version
       - image: circleci/golang:1.12.4
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    #### TEMPLATE_NOTE: go expects specific checkout path representing url
-    #### expecting it in the form of
-    ####   /go/src/github.com/circleci/go-tool
-    ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/sgoodliff/hello
 
     steps:
       - checkout
       - run: mkdir -p /tmp/test-results
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
 
       # specify any bash command here prefixed with `run: `
+      - run: go get github.com/jstemmer/go-junit-report
       - run: go get -v -t -d ./...
       - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
       - codecov/upload:
          file: /tmp/test-results/coverage.txt
          token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
+      - run: go build   
       - store_artifacts: # upload test summary for display in Artifacts
           path: /tmp/test-results
           destination: raw-test-output
 
       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
+
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - ~/.cache/go-build
     
