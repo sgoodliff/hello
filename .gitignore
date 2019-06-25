@@ -2,3 +2,4 @@
 vendor/*
 WebServer-ae57bd317ec3.json
 Gopkg.lock
+*.exe
