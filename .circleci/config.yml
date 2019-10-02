@@ -7,16 +7,12 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.8.2
 jobs:
   test:
-    docker:
-      - image: circleci/golang:1.12.4
-
-    working_directory: /go/src/github.com/sgoodliff/hello
-    steps:
-      - checkout
-      - run: mkdir -p /tmp/test-results
-      - restore_cache:
-          keys:
-            - v1-pkg-cache
+     docker:
+       - image: circleci/golang:1.12.4
+     steps:
+       - checkout
+       - run: echo "A more familiar hi"
+       - run: sleep 15
 
   build:
     docker:
@@ -58,3 +54,4 @@ jobs:
       jobs:
         - build
         - test
+    
