@@ -1,57 +1,56 @@
-# Golang CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-go/ for more details
-version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.4
-  gcp-cli: circleci/gcp-cli@1.8.2
-jobs:
-  test:
+ version: 2.1
+ orbs:
+  codecov: codecov/codecov@1.0.5
+ jobs:
+   test:
      docker:
        - image: circleci/golang:1.12.4
+     working_directory: /go/src/github.com/sgoodliff/hello
      steps:
        - checkout
-       - run: echo "A more familiar hi"
-       - run: sleep 15
-
-  build:
-    docker:
-      # specify the version
-      - image: circleci/golang:1.12.4
-
-    working_directory: /go/src/github.com/sgoodliff/hello
-
-    steps:
-      - checkout
-      - run: mkdir -p /tmp/test-results
-      - restore_cache:
+       - run: echo "A first hello"
+       - run: mkdir -p /tmp/test-results
+       - restore_cache:
           keys:
             - v1-pkg-cache
-
-      # specify any bash command here prefixed with `run: `
-      - run: go get github.com/jstemmer/go-junit-report
-      - run: go get -v -t -d ./...
-      - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
-      - codecov/upload:
-         file: /tmp/test-results/coverage.txt
-         token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
-      - run: go build ./...
-      - store_artifacts: # upload test summary for display in Artifacts
+            
+       - run: go get github.com/jstemmer/go-junit-report
+       - run: go get -v -t -d ./...
+       - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
+       - codecov/upload:
+          file: /tmp/test-results/coverage.txt
+          token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
+       - store_artifacts: # upload test summary for display in Artifacts
           path: /tmp/test-results
           destination: raw-test-output
 
-      - store_test_results: # upload test results for display in Test Summary
+       - store_test_results: # upload test results for display in Test Summary
           path: /tmp/test-results
 
-      - save_cache:
+       - save_cache:
           key: v1-pkg-cache
           paths:
             - ~/.cache/go-build
-
-  workflows:
-    version: 2
-    build_and_test:
-      jobs:
-        - build
-        - test
-    
+   build:
+     docker:
+       - image: circleci/golang:1.12.4
+     working_directory: /go/src/github.com/sgoodliff/hello
+     steps:
+       - checkout
+       - run: echo "A more familiar hi"
+       - restore_cache:
+          keys:
+            - v1-pkg-cache
+            
+       - run: go get -v -t -d ./...
+       - run: go build ./...
+       - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - ~/.cache/go-build
+ workflows:
+   version: 2
+   test_and_build:
+     jobs:
+       - test
+       - build
