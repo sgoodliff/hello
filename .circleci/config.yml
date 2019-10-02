@@ -12,8 +12,8 @@ jobs:
 
     working_directory: /go/src/github.com/sgoodliff/hello
     steps:
-     - checkout
-     - run: mkdir -p /tmp/test-results
+      - checkout
+      - run: mkdir -p /tmp/test-results
       - restore_cache:
           keys:
             - v1-pkg-cache
