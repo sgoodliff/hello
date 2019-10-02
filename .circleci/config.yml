@@ -8,6 +8,28 @@
        - checkout
        - run: echo "A first hello"
        - run: sleep 25
+           - run: mkdir -p /tmp/test-results
+       - restore_cache:
+          keys:
+            - v1-pkg-cache
+       - run: go get github.com/jstemmer/go-junit-report
+       - run: go get -v -t -d ./...
+       - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
+       - codecov/upload:
+          file: /tmp/test-results/coverage.txt
+          token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
+       - run: go build ./...
+       - store_artifacts: # upload test summary for display in Artifacts
+          path: /tmp/test-results
+          destination: raw-test-output
+
+       - store_test_results: # upload test results for display in Test Summary
+          path: /tmp/test-results
+
+       - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - ~/.cache/go-build
    two:
      docker:
        - image: circleci/golang:1.12.4
