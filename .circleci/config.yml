@@ -20,7 +20,6 @@
        - codecov/upload:
           file: /tmp/test-results/coverage.txt
           token: 6bc48cc7-5936-4ecf-abfc-67471579fe58
-       - run: go build ./...
        - store_artifacts: # upload test summary for display in Artifacts
           path: /tmp/test-results
           destination: raw-test-output
