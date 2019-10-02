@@ -39,7 +39,7 @@
      steps:
        - checkout
        - run: echo "A more familiar hi"
-        - restore_cache:
+       - restore_cache:
           keys:
             - v1-pkg-cache
             
