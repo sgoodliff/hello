@@ -8,7 +8,7 @@
        - checkout
        - run: echo "A first hello"
        - run: sleep 25
-           - run: mkdir -p /tmp/test-results
+       - run: mkdir -p /tmp/test-results
        - restore_cache:
           keys:
             - v1-pkg-cache
