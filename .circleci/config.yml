@@ -2,18 +2,18 @@
  orbs:
   codecov: codecov/codecov@1.0.4
  jobs:
-   one:
+   test:
      docker:
        - image: circleci/golang:1.12.4
      working_directory: /go/src/github.com/sgoodliff/hello
      steps:
        - checkout
        - run: echo "A first hello"
-       - run: sleep 25
        - run: mkdir -p /tmp/test-results
        - restore_cache:
           keys:
             - v1-pkg-cache
+            
        - run: go get github.com/jstemmer/go-junit-report
        - run: go get -v -t -d ./...
        - run: go test -race -coverprofile=/tmp/test-results/coverage.txt -covermode=atomic -v ./...
@@ -32,17 +32,26 @@
           key: v1-pkg-cache
           paths:
             - ~/.cache/go-build
-   two:
+   build:
      docker:
        - image: circleci/golang:1.12.4
      working_directory: /go/src/github.com/sgoodliff/hello
      steps:
        - checkout
        - run: echo "A more familiar hi"
-       - run: sleep 15
+        - restore_cache:
+          keys:
+            - v1-pkg-cache
+            
+       - run: go get -v -t -d ./...
+       - run: go build ./...
+       - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - ~/.cache/go-build
  workflows:
    version: 2
-   one_and_two:
+   test_and_build:
      jobs:
-       - one
-       - two
+       - test
+       - build
