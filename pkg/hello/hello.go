@@ -10,3 +10,8 @@ func Hello() string {
 func Goodbye() string {
 	return "Goodbye!"
 }
+
+//SomethingElse returns a string
+func SomethingElse() string {
+	return "SomethingElse!"
+}
